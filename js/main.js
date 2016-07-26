@@ -7,7 +7,7 @@ function drawBasic() {
 
     var options = {
         animation: {
-          "startup": true,
+          // "startup": true,
           duration: 1500,
           easing: 'inAndout',
         },
@@ -33,8 +33,7 @@ function drawBasic() {
         },
         vAxis: {
           minValue: 0,
-          maxValue: 1000
-        },
+          maxValue: 1000,
           title: 'Number of Immigrants',
           textStyle: {
             color: '#01579b',
@@ -46,15 +45,16 @@ function drawBasic() {
             fontSize: 25,
             fontName: 'Garamond',
          },
+       },
            backgroundColor: '#BAB4A9'
         }; // end of options
 
-    var stackOptions = {
-      isStacked: true,
-      height: 300,
-      legend: {position: 'top', maxLines: 3},
-      vAxis: {minValue: 0},
-     };
+    // var stackOptions = {
+    //   isStacked: true,
+    //   height: 300,
+    //   legend: {position: 'top', maxLines: 3},
+    //   vAxis: {minValue: 0},
+    //  };
 
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'Year');
@@ -220,42 +220,42 @@ function drawBasic() {
     //  };
 
       var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
-      var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-      chart.draw(data, options, stackOptions);
+      var addButton = document.getElementById('b1');
+      var removeButton = document.getElementById('b2');
+      // var index = 0;
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
-      // var addButton = document.getElementById('b1');
-      // var removeButton = document.getElementById('b2');
-      // //disable buttons while chart draws
-      //   addButton.disabled = true;
-      //   removeButton.disabled = true;
-      // google.visualization.events.addListener (chart, 'ready', 
-      //   function () {
-      //     //enable relavant buttons
-      //     addButton.disabled = (data.getNumberofColumns() - 1) >= chars.length;
-      //     removeButton.disabled = (data.getNumberofColumns() - 1) < 2;
-      //   });
+      
+        // //disable buttons while chart draws
+        //   addButton.disabled = true;
+        //   removeButton.disabled = true;
+        // google.visualization.events.addListener (chart, 'ready', 
+        //   function () {
+        //     //enable relavant buttons
+        //     addButton.disabled = (data.getNumberofColumns() - 1) >= chars.length;
+        //     removeButton.disabled = (data.getNumberofColumns() - 1) < 2;
+        //   });
+        chart.draw(data, options);
+    } // close of draw basic
 
 
-
-    }; // close of draw basic function
-
-// function shuffleAndDraw () {
-//   for (var i = 0; i < data.getNumberofRows(); ++i) {
-//     for (var j = 1; j < data.getNumberofColumns(); ++j) {
-//       var num = Math.floor(Math.random() * 1000);
+//   function shuffleAndDraw () {
+//     for (var i = 0; i < data.getNumberofRows(); ++i) {
+//       for (var j = 1; j < data.getNumberofColumns(); ++j) {
+//         var num = Math.floor(Math.random() * 1000);
+//       }
 //     }
+//     drawBasic();
 //   }
-//   drawBasic();
-// };
 
-// addButton.onclick = function () {
-//   data.addColumn('number', chars[data.getNumberofColumns() - 1]);
-//   shuffleAndDraw ();
-// }
-// removeButton.onclick = function () {
-//   data.removeColumn(data.getNumberofColumns() - 1);
-//   shuffleAndDraw();
-// }
+//   addButton.onclick = function () {
+//     data.addColumn('number', chars[data.getNumberofColumns() - 1]);
+//     shuffleAndDraw ();
+//   }
+//   removeButton.onclick = function () {
+//     data.removeColumn(data.getNumberofColumns() - 1);
+//     shuffleAndDraw();
+//   }
 
 // drawBasic ();
 
@@ -274,25 +274,16 @@ function drawChart () {
 };
 
 
-// change to annotated timeline perhaps?? 
 //animations
-  //change view window vaxis viewWindow.min
-  // adding and removing columns or rows
-  //isolate one or two countries
 
-//antimation.startup = true or false
-//animation duration
-//animation easing 
+        // antimation.startup = true or false
+        // animation duration
+        // animation easing 
 
-
-
-
-
-  // draw chart w/ percentages
-  //basic interactivity
-  //firing events
-  // handling events
-
+  //change view window  w/ vaxis viewWindow.min
+  // adding and removing columns and rows
+  //isolate one or two countries??
+  //populate panel based on country click?
 
 // var addButton = document.getElementById('b1');
 // var removeButton = document.getElementById('b2');
@@ -305,4 +296,8 @@ function drawChart () {
 //           addButton.disabled = (data.getNumberofColumns() - 1) >= chars.length;
 //           removeButton.disabled = (data.getNumberofColumns() - 1) < 2;
 //         });
+
+
+// firing and handling 
+// format date on popups!
 
