@@ -1,15 +1,14 @@
 google.charts.load('current', {packages: ['corechart', 'line', 'timeline']});
 google.charts.setOnLoadCallback(drawBasic);
-// google.charts.load('current', {'packages': ['timeline']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawBasic() {
 
     var options = {
         animation: {
-          // "startup": true,
+          "startup": true,
           duration: 1500,
-          easing: 'inAndout',
+          easing: 'in',
         },
             title: 'World War One Immigration',
             titleTextStyle: {
@@ -20,6 +19,7 @@ function drawBasic() {
             titlePosition: 'out',
         hAxis: {
           title: 'Time',
+          format: 'yyyy',
           textStyle: {
             color: '#01579b',
             fontSize: 25,
@@ -33,7 +33,7 @@ function drawBasic() {
         },
         vAxis: {
           minValue: 0,
-          maxValue: 1000,
+          maxValue: 100,
           title: 'Number of Immigrants',
           textStyle: {
             color: '#01579b',
@@ -46,15 +46,8 @@ function drawBasic() {
             fontName: 'Garamond',
          },
        },
-           backgroundColor: '#BAB4A9'
+           backgroundColor: 'white'
         }; // end of options
-
-    // var stackOptions = {
-    //   isStacked: true,
-    //   height: 300,
-    //   legend: {position: 'top', maxLines: 3},
-    //   vAxis: {minValue: 0},
-    //  };
 
       var data = new google.visualization.DataTable();
       data.addColumn('date', 'Year');
@@ -168,96 +161,17 @@ function drawBasic() {
 
       );      
 
-    //   var options = {
-    //     animation: {
-    //       "startup": true,
-    //       duration: 1500,
-    //       easing: 'inAndout',
-    //     },
-    //         title: 'World War One Immigration',
-    //         titleTextStyle: {
-    //           color: '#01579b',
-    //           fontSize: '45',
-    //           fontName: 'Garamond',
-    //         },
-    //         titlePosition: 'out',
-    //     hAxis: {
-    //       title: 'Time',
-    //       textStyle: {
-    //         color: '#01579b',
-    //         fontSize: 25,
-    //         fontName: 'Garamond',
-    //       },
-    //     titleTextStyle: {
-    //       color: '#01579b',
-    //         fontSize: 25,
-    //         fontName: 'Garamond',
-    //      },
-    //     },
-    //     vAxis: {
-    //       minValue: 0,
-    //       maxValue: 1000
-    //     },
-    //       title: 'Number of Immigrants',
-    //       textStyle: {
-    //         color: '#01579b',
-    //         fontSize: 25,
-    //         fontName: 'Garamond',
-    //       },
-    //      titleTextStyle: {
-    //       color: '#01579b',
-    //         fontSize: 25,
-    //         fontName: 'Garamond',
-    //      },
-    //        backgroundColor: '#BAB4A9'
-    //     }; // end of options
-
-    // var stackOptions = {
-    //   isStacked: true,
-    //   height: 300,
-    //   legend: {position: 'top', maxLines: 3},
-    //   vAxis: {minValue: 0},
-    //  };
-
       var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
       var addButton = document.getElementById('b1');
       var removeButton = document.getElementById('b2');
-      // var index = 0;
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 
-      
-        // //disable buttons while chart draws
-        //   addButton.disabled = true;
-        //   removeButton.disabled = true;
-        // google.visualization.events.addListener (chart, 'ready', 
-        //   function () {
-        //     //enable relavant buttons
-        //     addButton.disabled = (data.getNumberofColumns() - 1) >= chars.length;
-        //     removeButton.disabled = (data.getNumberofColumns() - 1) < 2;
-        //   });
+
         chart.draw(data, options);
-    } // close of draw basic
+      
+    }; // close of draw basic
 
 
-//   function shuffleAndDraw () {
-//     for (var i = 0; i < data.getNumberofRows(); ++i) {
-//       for (var j = 1; j < data.getNumberofColumns(); ++j) {
-//         var num = Math.floor(Math.random() * 1000);
-//       }
-//     }
-//     drawBasic();
-//   }
-
-//   addButton.onclick = function () {
-//     data.addColumn('number', chars[data.getNumberofColumns() - 1]);
-//     shuffleAndDraw ();
-//   }
-//   removeButton.onclick = function () {
-//     data.removeColumn(data.getNumberofColumns() - 1);
-//     shuffleAndDraw();
-//   }
-
-// drawBasic ();
 
 function drawChart () {
   var chart = new google.visualization.Timeline(document.getElementById('timeline'));
@@ -267,37 +181,42 @@ function drawChart () {
   dataTable.addColumn({ type: 'date', id: 'Start' });
   dataTable.addColumn({ type: 'date', id: 'End' });
   dataTable.addRows([
-      [ 'Chinese Exclusion Act', new Date(1882,0 ,0 ), new Date(1883,0, 0) ],
+      [ 'Chinese Exclusion Act', new Date(1882,0 ,0 ), new Date(1883, 0, 0) ],
       [ 'Alien Contract Labor Laws', new Date(1887,0 ,0 ),  new Date(1888,0 ,0) ],
       [ 'Immigration Act of 1891',  new Date(1891,0 ,0),  new Date(1892,0,0) ]]);
-   chart.draw(dataTable);
-};
+
+  var options = {
+    timeline: {
+      // singleColor: '#a53336',
+
+      rowLabelStyle: {
+        fontName: 'Garamond',
+        fontSize: 14,
+        color: 'white',
+      },
+      barLabelStyle: {
+        fontSize: 14,
+        fontName: 'Helvetica',
+        color: 'white',
+      },
+    },
+      // backgroundColor: '#01579b',
+      backgroundColor: '#4e7ca0',
+
+  };
+   chart.draw(dataTable, options);
+  }
+  
 
 
-//animations
-
-        // antimation.startup = true or false
-        // animation duration
-        // animation easing 
-
-  //change view window  w/ vaxis viewWindow.min
-  // adding and removing columns and rows
-  //isolate one or two countries??
-  //populate panel based on country click?
-
-// var addButton = document.getElementById('b1');
-// var removeButton = document.getElementById('b2');
-// //disable buttons while chart draws
-//         addButton.disabled = true;
-//         removeButton.disabled = true;
-//       google.visualization.events.addListener (chart, 'ready', 
-//         function () {
-//           //enable relavant buttons
-//           addButton.disabled = (data.getNumberofColumns() - 1) >= chars.length;
-//           removeButton.disabled = (data.getNumberofColumns() - 1) < 2;
-//         });
-
-
-// firing and handling 
+//change view window  w/ vaxis viewWindow.min
+// adding and removing columns and rows w/ animations
+//or add/remove dates, columns, zooms WHEN clicking on certain timeline object
+//populate panel based on country click?
 // format date on popups!
+//timeline plans
+// legislation
+//war context
+//major events?
+//timeline styling
 
