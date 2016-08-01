@@ -1,15 +1,16 @@
 google.charts.load('current', {packages: ['corechart', 'line', 'timeline']});
 google.charts.setOnLoadCallback(drawBasic);
-google.charts.setOnLoadCallback(drawChart);
+// google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawTimeline);
 
 function drawBasic() {
-
-    var options = {
-        animation: {
+  var options = {
+    animation: {
           "startup": true,
-          duration: 1500,
+          duration: 1000,
           easing: 'in',
         },
+
             title: 'World War One Immigration',
             titleTextStyle: {
               color: '#01579b',
@@ -17,6 +18,175 @@ function drawBasic() {
               fontName: 'Garamond',
             },
             titlePosition: 'out',
+
+        hAxis: {
+          title: 'Time',
+          format: 'yyyy',
+          textStyle: {
+            color: '#01579b',
+            fontSize: 25,
+            fontName: 'Garamond',
+          },
+        titleTextStyle: {
+          color: '#990000',
+            fontSize: 25,
+            fontName: 'Garamond',
+          
+         },  
+        },
+
+        vAxis: {
+          // minValue: 0,
+          // maxValue: 100,
+          title: 'Number of Immigrants',
+          textStyle: {
+            color: '#01579b',
+            fontSize: 25,
+            fontName: 'Garamond',
+          },
+         titleTextStyle: {
+          color: '#990000',
+            fontSize: 25,
+            fontName: 'Garamond',
+         },
+       },
+
+      legend: {
+        textStyle: {
+          color: '#990000',
+            fontSize: 16,
+            fontName: 'Garamond',
+          },
+      },
+
+       chartArea:{left:250,top:200,width:'70%',height:'70%'},
+
+        explorer: {
+          axis: 'horizontal',
+          actions: ['dragToZoom','rightClickToReset'],
+          keepInBounds: true,
+          maxZoomIn: 0.25,
+        },
+           backgroundColor: 'white'
+
+  }; // end of options
+
+  var data = new google.visualization.DataTable();
+   data.addColumn('date', 'Year');
+   data.addColumn('number', 'Total Immigration')
+   data.addRows(
+    [
+          [new Date ('1880'), 348691 ], //
+
+          [new Date ('1881'), 528545],  //
+
+          [new Date ('1882'), 648186],  //
+
+          [new Date ('1883'), 522587],  //
+
+          [new Date ('1884'), 453686], //
+
+          [new Date ('1885'), 353083], //
+
+          [new Date ('1886'), 329529], //
+
+          [new Date ('1887'), 482829],  //
+
+          [new Date ('1888'), 538131],  //
+
+          [new Date ('1889'), 434790],  //
+
+          [new Date ('1890'), 445680], //
+
+          [new Date ('1891'), 546085], //
+
+          [new Date ('1892'), 570876], //fixed
+
+          [new Date ('1893'), 429324], 
+
+          [new Date ('1894'), 277052], 
+
+          [new Date ('1895'), 250342], 
+
+          [new Date ('1896'), 329067], 
+
+          [new Date ('1897'), 216397],
+
+          [new Date ('1898'), 217786],
+
+          [new Date ('1899'), 297349], 
+
+          [new Date ('1900'), 424700], 
+
+          [new Date ('1901'), 469237],
+
+          [new Date ('1902'),619068],
+
+          [new Date ('1903'),814507],
+
+          [new Date ('1904'),767933],
+
+          [new Date ('1905'),974273],
+
+          [new Date ('1906'),1018365],
+
+          [new Date ('1907'),1199566],
+
+          [new Date ('1908'),691901],
+
+          [new Date ('1909'),654875],
+
+          [new Date ('1910'),926291],
+
+          [new Date ('1911'),764757],
+
+          [new Date ('1912'),718875],
+
+          [new Date ('1913'),1055855],
+
+          [new Date ('1914'),1058391],
+
+          [new Date ('1915'),197919],
+
+          [new Date ('1916'),145699],
+
+          [new Date ('1917'),133083],
+
+          [new Date ('1918'),31063],
+
+          [new Date ('1919'),24627],
+
+          [new Date ('1920'),246295], //
+        ]
+
+    );
+
+        var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+
+
+
+}; // end of draw basic
+
+function drawChart() {
+
+    var options = {
+        animation: {
+          "startup": true,
+          duration: 1000,
+          easing: 'in',
+        },
+
+            title: 'World War One Immigration',
+            titleTextStyle: {
+              color: '#01579b',
+              fontSize: '45',
+              fontName: 'Garamond',
+            },
+            titlePosition: 'out',
+
         hAxis: {
           title: 'Time',
           format: 'yyyy',
@@ -29,11 +199,13 @@ function drawBasic() {
           color: '#01579b',
             fontSize: 25,
             fontName: 'Garamond',
-         },
+          
+         },  
         },
+
         vAxis: {
-          minValue: 0,
-          maxValue: 100,
+          // minValue: 0,
+          // maxValue: 100,
           title: 'Number of Immigrants',
           textStyle: {
             color: '#01579b',
@@ -46,6 +218,15 @@ function drawBasic() {
             fontName: 'Garamond',
          },
        },
+
+       chartArea:{left:250,top:200,width:'70%',height:'70%'},
+
+        explorer: {
+          axis: 'horizontal',
+          actions: ['dragToZoom','rightClickToReset'],
+          keepInBounds: true,
+          maxZoomIn: 0.25,
+        },
            backgroundColor: 'white'
         }; // end of options
 
@@ -164,35 +345,70 @@ function drawBasic() {
       var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
       var addButton = document.getElementById('b1');
       var removeButton = document.getElementById('b2');
+      var zoomButton = document.getElementById('b3');
       var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 
+      // function drawChart () {
+      //   //disable while chart is drawing 
+      //   button.disabled = true;
+      //   google.visualization.events.addListener(chart, 'ready',
+      //   function () {
+      //     button.disabled = false;
+      //   });
+      //     chart.draw(data, options);
 
+      // }
+
+
+        // $.(window).smartresize(function() {
         chart.draw(data, options);
-      
-    }; // close of draw basic
+      // }
+    }; // close of draw chart
 
 
 
-function drawChart () {
+
+
+function drawTimeline () {
   var chart = new google.visualization.Timeline(document.getElementById('timeline'));
   var dataTable = new google.visualization.DataTable();
 
+  dataTable.addColumn({ type: 'string', id: 'Category'})
   dataTable.addColumn({ type: 'string', id: 'Legislation'});
   dataTable.addColumn({ type: 'date', id: 'Start' });
   dataTable.addColumn({ type: 'date', id: 'End' });
   dataTable.addRows([
-      [ 'Chinese Exclusion Act', new Date(1882,0 ,0 ), new Date(1883, 0, 0) ],
-      [ 'Alien Contract Labor Laws', new Date(1887,0 ,0 ),  new Date(1888,0 ,0) ],
-      [ 'Immigration Act of 1891',  new Date(1891,0 ,0),  new Date(1892,0,0) ]]);
+      [ 'Legislation','Chinese Exclusion Act', new Date(1882,0 ,0 ), new Date(1883, 0, 0) ],
+      [ 'Legislation','Alien Contract Labor Laws', new Date(1885,0 ,0 ),  new Date(1886,0 ,0) ],
+      [ 'Legislation','Alien Contract Labor Laws (Again)', new Date(1887,0 ,0 ),  new Date(1888,0 ,0) ],
+      [ 'Legislation','Immigration Act of 1891', new Date(1891,0 ,0 ),  new Date(1892,0 ,0) ],
+      [ 'Event','Ellis Island Opens', new Date(1892,0 ,0 ),  new Date(1893,0 ,0) ],
+      [ 'Legislation','Migration Procedures Formalized', new Date(1893,0 ,0 ),  new Date(1894,0 ,0) ],
+      // [ 'Movement','Immigration Wave',  new Date(1900,0 ,0),  new Date(1920,0,0) ],
+      [ 'Legislation','1903 Immigration Act',  new Date(1903,0 ,0),  new Date(1904,0,0) ],
+      [ 'Legislation','Naturalization Act of 1906',  new Date(1906,0 ,0),  new Date(1907,0,0) ],
+      [ 'Legislation','Immigration Act of 1917',  new Date(1917,0 ,0),  new Date(1918,0,0) ],
+      [ 'Event','U.S. Enters World War One',  new Date(1917, 4 ,0),  new Date(1917,4,0) ],
+      [ 'Event','1918 Presidential Proclamation',  new Date(1918,0 ,0),  new Date(1919,0,0) ],
+
+
+
+
+
+      ]);
 
   var options = {
-    timeline: {
+    colors: [ '#01579b', '#990000'],
+
+  timeline: {
+      groupByRowLabel: true,
+      colorByRowLabel: true,
       // singleColor: '#a53336',
 
       rowLabelStyle: {
         fontName: 'Garamond',
         fontSize: 14,
-        color: 'white',
+        color: 'black',
       },
       barLabelStyle: {
         fontSize: 14,
@@ -201,22 +417,56 @@ function drawChart () {
       },
     },
       // backgroundColor: '#01579b',
-      backgroundColor: '#4e7ca0',
+      backgroundColor: 'white',
 
   };
    chart.draw(dataTable, options);
   }
-  
 
+  // click handlers
+  $('#b0').click(function(e){
+    drawChart();
+    return false;
+  });
+
+  $('#total').click(function(e){
+    drawBasic();
+    return false;
+  });
+
+
+// var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
+//         chart.draw(data, options);
 
 //change view window  w/ vaxis viewWindow.min
 // adding and removing columns and rows w/ animations
+
 //or add/remove dates, columns, zooms WHEN clicking on certain timeline object
 //populate panel based on country click?
 // format date on popups!
+
+
+
+
+
+
 //timeline plans
 // legislation
 //war context
 //major events?
 //timeline styling
+
+//1885 alien contract labor laws; more in 1887
+// immigration act of 1891 - est federal immigration service ist of excludable classes - "polygamists, persons convicted of crimes of moral turpitude, and those suffering loathsome or contagious diseases" (USCIS). 
+//1892 - ellis island opened
+// 1893 mmigration procedures formalized during the first decade in attempts to enforce national immigration policy
+// - collection of manifests
+// - reviewing of exclusion cases
+// 1900 - Between 1900 - 1920, more than 14.5 million immigrants admitted to the US
+// 1903 immigration act
+// naturalization act of 1906 - put in place to prevent naturalization fraud
+//immigration act of 1917 - april 1917 US enters war
+//1918 Presidential Proclamation - affected immigration from Canada and Mexico
+
+
 
