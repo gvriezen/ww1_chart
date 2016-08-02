@@ -196,7 +196,7 @@ function drawChart() {
             fontName: 'Garamond',
           },
         titleTextStyle: {
-          color: '#01579b',
+          color: '#990000',
             fontSize: 25,
             fontName: 'Garamond',
           
@@ -213,7 +213,7 @@ function drawChart() {
             fontName: 'Garamond',
           },
          titleTextStyle: {
-          color: '#01579b',
+          color: '#990000',
             fontSize: 25,
             fontName: 'Garamond',
          },
