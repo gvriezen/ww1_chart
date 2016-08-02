@@ -13,7 +13,7 @@ function drawBasic() {
 
             title: 'World War One Immigration',
             titleTextStyle: {
-              color: '#01579b',
+              color: 'white',
               fontSize: '45',
               fontName: 'Garamond',
             },
@@ -23,12 +23,12 @@ function drawBasic() {
           title: 'Time',
           format: 'yyyy',
           textStyle: {
-            color: '#01579b',
+            color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           },
         titleTextStyle: {
-          color: '#990000',
+          color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           
@@ -40,12 +40,12 @@ function drawBasic() {
           // maxValue: 100,
           title: 'Number of Immigrants',
           textStyle: {
-            color: '#01579b',
+            color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           },
          titleTextStyle: {
-          color: '#990000',
+          color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
          },
@@ -53,7 +53,7 @@ function drawBasic() {
 
       legend: {
         textStyle: {
-          color: '#990000',
+          color: 'white',
             fontSize: 16,
             fontName: 'Garamond',
           },
@@ -67,7 +67,7 @@ function drawBasic() {
           keepInBounds: true,
           maxZoomIn: 0.25,
         },
-           backgroundColor: 'white'
+           backgroundColor: 'transparent'
 
   }; // end of options
 
@@ -181,7 +181,7 @@ function drawChart() {
 
             title: 'World War One Immigration',
             titleTextStyle: {
-              color: '#01579b',
+              color: 'white',
               fontSize: '45',
               fontName: 'Garamond',
             },
@@ -191,12 +191,12 @@ function drawChart() {
           title: 'Time',
           format: 'yyyy',
           textStyle: {
-            color: '#01579b',
+            color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           },
         titleTextStyle: {
-          color: '#990000',
+          color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           
@@ -208,16 +208,24 @@ function drawChart() {
           // maxValue: 100,
           title: 'Number of Immigrants',
           textStyle: {
-            color: '#01579b',
+            color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
           },
          titleTextStyle: {
-          color: '#990000',
+          color: 'white',
             fontSize: 25,
             fontName: 'Garamond',
          },
        },
+
+       legend: {
+        textStyle: {
+          color: 'white',
+            fontSize: 16,
+            fontName: 'Garamond',
+          },
+        },
 
        chartArea:{left:250,top:200,width:'70%',height:'70%'},
 
@@ -227,7 +235,7 @@ function drawChart() {
           keepInBounds: true,
           maxZoomIn: 0.25,
         },
-           backgroundColor: 'white'
+           backgroundColor: 'transparent'
         }; // end of options
 
       var data = new google.visualization.DataTable();
